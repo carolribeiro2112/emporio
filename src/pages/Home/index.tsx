@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react';
 import axios from 'axios';
 import Header from '../../components/Header';
 
+import {Cards, Card} from './styles';
+
 const Home = () => {
   const [beers, setBeers] = useState([]);
 
@@ -20,16 +22,20 @@ const Home = () => {
   return(
     <>
       <Header/>
-      <h1>Home</h1>
-
-      <div>
+       <Cards>
         {
-          beers !== undefined &&
+          beers !== null &&
           beers.map((item:any)=>(
-            <h1>item.title</h1>
+            <Card key={item.id}>
+              <img src={item.image} alt={item.title}/>
+              <p>{item.description}</p>
+              <h2>{item.title}</h2>
+              <h3>{item.price}</h3>
+              <button>Adicionar</button>
+            </Card>  
           ))
         }
-      </div>
+      </Cards>
     </>
   )
 }

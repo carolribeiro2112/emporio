@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useRef } from 'react';
 import { Redirect } from 'react-router-dom';
+import {Login, Title, Input, Button } from './styles';
 
 const Cadastro = () => {
 
@@ -22,7 +23,7 @@ const Cadastro = () => {
 
     axios.post('http://localhost:4000/register', request)
       .then(response => {
-        localStorage.setItem("token", response.data.accesToken)
+        localStorage.setItem("token", response.data.accessToken)
         setAutorized(true)
       })
   }  
@@ -30,19 +31,18 @@ const Cadastro = () => {
 
   return(
     <>
-      <h1>Cadastro</h1>
+      <Title>Cadastro</Title>
 
-      <div>
-        <input type="text" placeholder="Digite o seu nome"/>
-        <input type="text" placeholder="Digite a sua idade"/>
-        <input type="email" placeholder="Digite o seu Email"/>
-        <input type="password" placeholder="Digite a sua senha"/>
-        <button onClick={Cadastrar}>Cadastrar</button>
+      <Login>
+        <Input type="text" ref={inputNome} placeholder="Digite o seu nome"/>
+        <Input type="text" ref={inputIdade} placeholder="Digite a sua idade"/>
+        <Input type="email" ref={inputEmail} placeholder="Digite o seu Email"/>
+        <Input type="password" ref={inputSenha} placeholder="Digite a sua senha"/>
+        <Button onClick={Cadastrar}>Cadastrar</Button>
         {
-            authorized &&
-            <Redirect to="/home"/>
+            authorized && <Redirect to="/home"/>
           }
-      </div>
+      </Login>
     </>
   )
 }

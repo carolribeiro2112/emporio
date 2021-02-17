@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import LogoImg from '../../assets/logo.svg';
+import LogoImg2 from '../../assets/logo2.svg';
+import {FiShoppingCart} from 'react-icons/fi';
+import {H3, Head, Categories, Logo, Cart} from './styles';
 
 const Header = () => {
 
@@ -19,17 +23,25 @@ const Header = () => {
 
   return(
     <>
-      <h1>Logo</h1>
-
-      <ul>
-        {
-          category!==undefined &&
-          category.map((item:any)=>(
-            <li key={item.id}>item.title</li>
-          ))
-        }
-        <li></li>
-      </ul>
+      <H3>A Maior Loja Especializada de Cervejas do Brasil.</H3>
+      <Head>
+        <Logo>
+          <img src={LogoImg2} alt=""/>
+          <img src={LogoImg} alt=""/>
+        </Logo>
+        <Categories>
+          {
+            category!==null &&
+            category.map((item:any)=>(
+              <li key={item}>{item}</li>
+            ))
+          }
+        </Categories>
+        <Cart>
+          <FiShoppingCart size={32}/>
+          <p>vazio :(</p>
+        </Cart>
+      </Head>
     </>
   )
 }
