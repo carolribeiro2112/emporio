@@ -21,12 +21,17 @@ const Cadastro = () => {
       age: inputIdade.current?.value
     }
 
-    axios.post('http://localhost:4000/register', request)
-      .then(response => {
-        localStorage.setItem("token", response.data.accessToken)
-        setAutorized(true)
-      })
-  }  
+    
+      if(Number(request.age)>=18){
+        axios.post('http://localhost:4000/register', request)
+        .then(response => {
+          localStorage.setItem("token", response.data.accessToken)
+          setAutorized(true)
+        })
+      } else {
+        alert ('Acesso não permitido para menores de 18 anos')
+      }
+    } 
 
 
   return(

@@ -5,6 +5,7 @@ import LogoImg2 from '../../assets/logo2.svg';
 import {FiShoppingCart} from 'react-icons/fi';
 import {H3, Head, Categories, Logo, Cart} from './styles';
 
+
 const Header = () => {
 
   const token = localStorage.getItem("token")
@@ -39,7 +40,7 @@ const Header = () => {
         </Categories>
         <Cart>
           <FiShoppingCart size={32}/>
-          <p>vazio :(</p>
+          <p></p>
         </Cart>
       </Head>
     </>

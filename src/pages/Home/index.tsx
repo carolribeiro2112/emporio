@@ -3,9 +3,13 @@ import axios from 'axios';
 import Header from '../../components/Header';
 
 import {Cards, Card} from './styles';
+import { CartItemState} from '../../store/ducks/cart/types';
+import { useDispatch, useSelector } from 'react-redux';
+import {addCartItem} from '../../store/ducks/cart/actions';
 
 const Home = () => {
-  const [beers, setBeers] = useState([]);
+
+  const [product, setProduct] = useState([]);
 
   const token = localStorage.getItem("token")
   
@@ -15,23 +19,31 @@ const Home = () => {
 
   useEffect(()=>{
     axios.get(' http://localhost:4000/beers', {headers:headers})
-      .then(response => setBeers(response.data))
+      .then(response => setProduct(response.data))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
+
+  const cartItens = useSelector((state: CartItemState)=> state.cartItem.cartItens)
+
+  const dispatch = useDispatch()
+  
+  // const addBeerToCart = () => {
+  //   dispatch(addCartItem())
+  // }
 
   return(
     <>
       <Header/>
        <Cards>
         {
-          beers !== null &&
-          beers.map((item:any)=>(
+          product !== null &&
+          product.map((item:any)=>(
             <Card key={item.id}>
               <img src={item.image} alt={item.title}/>
               <p>{item.description}</p>
               <h2>{item.title}</h2>
               <h3>{item.price}</h3>
-              <button>Adicionar</button>
+              <button >Adicionar</button>
             </Card>  
           ))
         }
