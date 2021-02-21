@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 import { CartItemState, CartItens } from '../../store/ducks/cart/types';
 
 const Carrinho = () => {
-  const cartItens = useSelector((state:CartItemState)=>state.cartItem.cartItens)
+  const cartItens = useSelector((state:CartItemState)=>state.cart.cartItens)
 
   return(
     <>

@@ -17,8 +17,7 @@ export const Card = styled.div`
 
   img{
     border-radius: 20px;
-    width: 150px;
-    height: 150px;
+    height: 180px;
   }
 
   h2{

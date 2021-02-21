@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import LogoImg from '../../assets/logo.svg';
 import LogoImg2 from '../../assets/logo2.svg';
-import {FiShoppingCart} from 'react-icons/fi';
-import {H3, Head, Categories, Logo, Cart} from './styles';
+import {H3, Head, Categories, Logo} from './styles';
+import Notification from '../Notification';
+// import { CartItemState, CartItens } from '../../store/ducks/cart/types';
 
 
 const Header = () => {
@@ -38,10 +39,7 @@ const Header = () => {
             ))
           }
         </Categories>
-        <Cart>
-          <FiShoppingCart size={32}/>
-          <p></p>
-        </Cart>
+        <Notification/>
       </Head>
     </>
   )

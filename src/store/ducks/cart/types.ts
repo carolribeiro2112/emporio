@@ -17,5 +17,5 @@ export interface ArrayCartItens {
 }
 
 export interface CartItemState {
-  cartItem: ArrayCartItens;
+  cart: ArrayCartItens;
 }
