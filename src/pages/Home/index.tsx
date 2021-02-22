@@ -28,9 +28,40 @@ const Home = () => {
   const dispatch = useDispatch()
   
   const addBeerToCart = (i:CartItens ) => {
-    cartItens.push(i)
-    dispatch(addCartItem(cartItens))
-    console.log(cartItens)
+    
+    const ArrayNewItem = cartItens
+
+    const itemFound = ArrayNewItem.find((element:CartItens)=> element.id === i.id)
+    const itemFoundIndex = ArrayNewItem.findIndex((element:CartItens) => element.id === i.id)
+
+    if(itemFound){
+      const newItem: CartItens = {
+        id: itemFound.id,
+        title: itemFound.title,
+        description: itemFound.description,
+        image: itemFound.image,
+        price: itemFound.price,
+        quantity: itemFound.quantity+1
+      }
+      ArrayNewItem.splice(itemFoundIndex,1,newItem)
+      dispatch(addCartItem(ArrayNewItem))
+    } else {
+      const newItem: CartItens = {
+        id: i.id,
+        title: i.title,
+        description: i.description,
+        image: i.image,
+        price: i.price,
+        quantity: 1
+      }
+      ArrayNewItem.push(newItem)
+      dispatch(addCartItem(ArrayNewItem))
+    }
+    
+    
+    // cartItens.push(i)
+    // dispatch(addCartItem(cartItens))
+    // console.log(cartItens)
   }
 
   

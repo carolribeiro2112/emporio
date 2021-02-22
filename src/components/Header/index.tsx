@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import LogoImg from '../../assets/logo.svg';
 import LogoImg2 from '../../assets/logo2.svg';
@@ -39,7 +40,9 @@ const Header = () => {
             ))
           }
         </Categories>
-        <Notification/>
+        <Link to='/carrinho'> 
+          <Notification/>
+        </Link>
       </Head>
     </>
   )

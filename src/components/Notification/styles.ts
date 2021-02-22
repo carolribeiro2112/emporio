@@ -6,5 +6,7 @@ export const Cart = styled.div`
 
   p{
     margin-left: 8px;
+    color: red;
+    font-size: 20px;
   }
 `;

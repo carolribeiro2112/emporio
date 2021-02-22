@@ -37,5 +37,9 @@ export const Categories = styled.div`
       margin-left: 16px;
     }
   }
+
+  a{
+    text-decoration: none;
+  }
 `;
 
