@@ -1,7 +1,15 @@
 import axios from 'axios';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, InputHTMLAttributes } from 'react';
+import {IconBaseProps} from 'react-icons';
 import { Redirect } from 'react-router-dom';
-import {Login, Title, Input, Button } from './styles';
+import {FaBirthdayCake} from 'react-icons/fa'
+
+import {Login, Title, Input, Button, Background } from './styles';
+import { FiUser } from 'react-icons/fi';
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  icon: React.ComponentType<IconBaseProps>;
+}
 
 const Cadastro = () => {
 
@@ -35,20 +43,22 @@ const Cadastro = () => {
 
 
   return(
-    <>
-      <Title>Cadastro</Title>
+    
+      <Background> 
+        <Title>Cadastro</Title>
 
-      <Login>
-        <Input type="text" ref={inputNome} placeholder="Digite o seu nome"/>
-        <Input type="text" ref={inputIdade} placeholder="Digite a sua idade"/>
-        <Input type="email" ref={inputEmail} placeholder="Digite o seu Email"/>
-        <Input type="password" ref={inputSenha} placeholder="Digite a sua senha"/>
-        <Button onClick={Cadastrar}>Cadastrar</Button>
-        {
+        <Login>
+          <Input type="text" ref={inputNome} placeholder="Digite o seu nome"/>
+          <Input type="text" ref={inputIdade} placeholder="Digite a sua idade"/>
+          <Input type="email" ref={inputEmail} placeholder="Digite o seu Email"/>
+          <Input type="password" ref={inputSenha} placeholder="Digite a sua senha"/>
+          <Button onClick={Cadastrar}>Cadastrar</Button>
+          {
             authorized && <Redirect to="/home"/>
           }
-      </Login>
-    </>
+        </Login>
+      </Background> 
+    
   )
 }
 

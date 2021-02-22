@@ -26,13 +26,18 @@ const Header = () => {
 
   return(
     <>
-      <H3>A Maior Loja Especializada de Cervejas do Brasil.</H3>
+      <H3>A Maior <span>Loja Especializada de Cervejas</span> do Brasil.</H3>
       <Head>
         <Logo>
           <img src={LogoImg2} alt=""/>
           <img src={LogoImg} alt=""/>
         </Logo>
-        <Categories>
+        
+        <Link to='/carrinho'> 
+          <Notification/>
+        </Link>
+      </Head>
+      <Categories>
           {
             category!==null &&
             category.map((item:any)=>(
@@ -40,10 +45,6 @@ const Header = () => {
             ))
           }
         </Categories>
-        <Link to='/carrinho'> 
-          <Notification/>
-        </Link>
-      </Head>
     </>
   )
 }

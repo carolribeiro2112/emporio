@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header';
 import { addCartItem } from '../../store/ducks/cart/actions';
 import { CartItemState, CartItens } from '../../store/ducks/cart/types';
-import {Table,Thead, Card, TD} from './styles';
+import {Table,Thead, Card, TD, H1, H3, Button} from './styles';
 
 const Carrinho = () => {
   const [refresh,setRefresh] = useState<Boolean>(true)
@@ -38,15 +38,22 @@ const Carrinho = () => {
   return(
     <>
       <Header/>
-      <h1>Meu Carrinho</h1>
-      {
-        cartItens.length <= 0 
-        ? <>
-            <h3>Carrinho vazio :(</h3> 
+      <H1>Meu Carrinho</H1>
+      
+        {
+          cartItens.length <= 0 
+          ? <>
+              <H3>Carrinho vazio :(</H3> 
+                <Button>
+                  <Link to='/home'>Continuar comprando</Link>
+                </Button>
+            </>
+          : <Button>
               <Link to='/home'>Continuar comprando</Link>
-          </>
-        :   <Link to='/home'>Continuar comprando</Link>
-      }
+            </Button>
+        }
+      
+     
       
       <Table>        
           <Thead>

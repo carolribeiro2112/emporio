@@ -5,8 +5,12 @@ export const Cart = styled.div`
   align-items: center;
 
   p{
+    text-decoration: none;
     margin-left: 8px;
-    color: red;
+    color: #FFF;
     font-size: 20px;
+    background-color: red;
+    padding: 8px;
+    border-radius: 50%;
   }
 `;

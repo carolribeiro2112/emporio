@@ -57,15 +57,7 @@ const Home = () => {
       ArrayNewItem.push(newItem)
       dispatch(addCartItem(ArrayNewItem))
     }
-    
-    
-    // cartItens.push(i)
-    // dispatch(addCartItem(cartItens))
-    // console.log(cartItens)
   }
-
-  
-
   return(
     <>
       <Header/>
@@ -75,9 +67,11 @@ const Home = () => {
           product.map((item:CartItens)=>(
             <Card key={item.id}>
               <img src={item.image} alt={item.title}/>
-              <p>{item.description}</p>
-              <h2>{item.title}</h2>
-              <h3>{item.price}</h3>
+              <div>
+                <p>{item.description}</p>
+                <h2>{item.title}</h2>
+                <h3>{item.price}</h3>
+              </div>
               <button onClick={()=>addBeerToCart(item)}>Adicionar</button>
             </Card>  
           ))

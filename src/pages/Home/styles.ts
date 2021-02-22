@@ -20,12 +20,23 @@ export const Card = styled.div`
     height: 180px;
   }
 
-  h2{
-    font-size: 16px;
+  div{
+    h2{
+      font-size: 16px;
+    }
+
+    h3{
+      font-size: 14px;
+    }
   }
 
-  h3{
-    font-size: 14px;
+  button{
+    margin: 15px auto;
+    padding: 8px 20px;
+    color: #FFF;
+    background-color: #fc591f;
+    border-radius: 8px;
+    border: none;
   }
 
 `;

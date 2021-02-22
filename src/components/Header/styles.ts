@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const H3 = styled.h3`
  text-align: center;
  padding: 8px;
+
+ span{
+    background-color: #ffa935;
+  }
 `;
 
 export const Head = styled.div`
@@ -11,6 +15,11 @@ export const Head = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 36px;
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 export const Logo = styled.div`
@@ -23,7 +32,8 @@ export const Categories = styled.div`
   display: flex; 
   align-items: center;
   justify-content: center;
-  margin-left: -80px;
+  background-color: #FFF;
+  border-bottom: solid 5px #ffa935;
 
   li {
     list-style-type: none;

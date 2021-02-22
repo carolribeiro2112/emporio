@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import {shade} from 'polished';
+import signInBackgroundImg from '../../assets/background-login.jpg'
 
 export const Title = styled.h1`
-  margin-top: 36px;
+  padding-top: 36px;
   font-size: 36px;
   font-weight: bold;
   text-align: center;
@@ -14,13 +15,21 @@ export const Login = styled.div`
 `;
 export const Input = styled.input`
   display: block;
+  width: 200px;
   margin: 0 auto;
+  
   border-radius: 4px;
   border: none;
   height: 36px;
+  background-color: transparent;
+  border: solid 1px ${shade(0.2,'#FFF')};
 
   & + Input{
     margin-top: 8px;
+  }
+
+  &::placeholder{
+    color: black;
   }
 `;
 
@@ -30,10 +39,17 @@ export const Button = styled.button`
   border-radius: 4px;
   border: none;
   height: 36px;
-  width: 160px;
+  width: 200px;
   font-weight: bold;
 
   &:hover {
     background-color: ${shade(0.2,'#ffa935')};
   }
+`;
+
+export const Background = styled.div`
+  height: 100vh;
+  flex: 1;
+  background: url(${signInBackgroundImg}) no-repeat center;
+  background-size: cover;
 `;

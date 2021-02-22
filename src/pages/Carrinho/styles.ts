@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const H1 = styled.h1`
+  margin-top: 20px;
+  text-align: center;
+`;
+
+export const H3 = styled.h3`
+  text-align: center;
+`;
+
 export const Table = styled.section`
   margin: 50px auto;
   max-width: 1000px;
@@ -36,4 +45,15 @@ export const TD = styled.div`
     width: 30px;
   }
 
+`;
+
+export const Button = styled.div`
+  a{
+    background-color: green;
+    padding: 20px;
+    border-radius: 15px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: #FFF;
+  }
 `;
