@@ -1,15 +1,16 @@
 import axios from 'axios';
-import React, { useState, useRef, InputHTMLAttributes } from 'react';
-import {IconBaseProps} from 'react-icons';
+import React, { useState, useRef} from 'react';
+import toast, {Toaster} from 'react-hot-toast';
+// import {IconBaseProps} from 'react-icons';
 import { Redirect } from 'react-router-dom';
-import {FaBirthdayCake} from 'react-icons/fa'
+// import {FaBirthdayCake} from 'react-icons/fa'
 
 import {Login, Title, Input, Button, Background } from './styles';
-import { FiUser } from 'react-icons/fi';
+// import { FiUser } from 'react-icons/fi';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  icon: React.ComponentType<IconBaseProps>;
-}
+// interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+//   icon: React.ComponentType<IconBaseProps>;
+// }
 
 const Cadastro = () => {
 
@@ -29,20 +30,27 @@ const Cadastro = () => {
       age: inputIdade.current?.value
     }
 
-    
-      if(Number(request.age)>=18){
-        axios.post('http://localhost:4000/register', request)
-        .then(response => {
-          localStorage.setItem("token", response.data.accessToken)
-          setAutorized(true)
-        })
-      } else {
-        alert ('Acesso não permitido para menores de 18 anos')
-      }
+    const getUser = async () => {
+      try{
+        if(Number(request.age)>=18){
+          const response= await axios.post('http://localhost:4000/register', request)
+            localStorage.setItem("token", response.data.accessToken)
+            setAutorized(true)
+        } else {
+          toast.error('Acesso negado para menores de 18 anos')
+        }
+        }catch(error){
+          console.log(error)
+        }
+      } 
+      getUser();   
+     
     } 
 
 
   return(
+      <>
+      <Toaster/>
     
       <Background> 
         <Title>Cadastro</Title>
@@ -57,8 +65,9 @@ const Cadastro = () => {
             authorized && <Redirect to="/home"/>
           }
         </Login>
+        
       </Background> 
-    
+    </>
   )
 }
 

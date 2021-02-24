@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import { addCartItem } from '../../store/ducks/cart/actions';
 import { CartItemState, CartItens } from '../../store/ducks/cart/types';
 import {Table,Thead, Card, TD, H1, H3, Button} from './styles';
+import {FiTrash2} from 'react-icons/fi'
 
 const Carrinho = () => {
   const [refresh,setRefresh] = useState<Boolean>(true)
@@ -34,6 +35,21 @@ const Carrinho = () => {
     }
   }
 
+  const deleteItem = (item: CartItens) => {
+    const itemIndex = ArraynewItem.findIndex((element:CartItens)=> element.id===item.id)
+    ArraynewItem.splice(itemIndex,1)
+    dispatch(addCartItem(ArraynewItem))
+    setRefresh(!refresh)
+  }
+
+  const calc = (item: CartItens) => {
+    const price = (Number(item.price));
+    const quantity = (item.quantity);
+    const subTotal = price*quantity;
+    return subTotal;
+  }
+  console.log(calc)
+
 
   return(
     <>
@@ -60,7 +76,7 @@ const Carrinho = () => {
             <p>Produto</p>
             <p>Preço</p>
             <p>Quantidade</p>
-            <p>Subtotal</p>
+            
           </Thead>
       
         <div>
@@ -70,7 +86,7 @@ const Carrinho = () => {
                <TD><img src={item.image} alt={item.title}/><p>{item.title}</p></TD>
                <TD>{item.price}</TD>
                <TD><button onClick={()=>decreaseQuantity(item)}>-</button>{item.quantity}<button onClick={()=>addQuantity(item)}>+</button></TD>
-               <TD>{item.price}</TD>
+               <TD><FiTrash2 onClick={()=>deleteItem(item)}/></TD>
              </Card>
            ))
          }

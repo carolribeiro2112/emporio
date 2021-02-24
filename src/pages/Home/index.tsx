@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import axios from 'axios';
+import toast, {Toaster} from 'react-hot-toast';
 import Header from '../../components/Header';
 
 import {Cards, Card} from './styles';
@@ -8,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {addCartItem} from '../../store/ducks/cart/actions';
 
 const Home = () => {
+  const [refresh,setRefresh] = useState<Boolean>(true);
 
   const [product, setProduct] = useState([]);
 
@@ -17,9 +19,20 @@ const Home = () => {
     'Authorization': `Bearer ${token}`
   }
 
+  const getBeers = async () => {
+    try{
+      const response = await axios.get(' http://localhost:4000/beers', {headers:headers})
+      setProduct(response.data)
+      toast.success('Você foi autorizado a entrar no site!')
+    } catch(error){
+      if(error.response.status === 404){
+        toast.error('Não foi possível encontrar o produto selecionado')
+      }
+    }
+  }
+
   useEffect(()=>{
-    axios.get(' http://localhost:4000/beers', {headers:headers})
-      .then(response => setProduct(response.data))
+      getBeers()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -29,6 +42,7 @@ const Home = () => {
   
   const addBeerToCart = (i:CartItens ) => {
     
+
     const ArrayNewItem = cartItens
 
     const itemFound = ArrayNewItem.find((element:CartItens)=> element.id === i.id)
@@ -45,6 +59,7 @@ const Home = () => {
       }
       ArrayNewItem.splice(itemFoundIndex,1,newItem)
       dispatch(addCartItem(ArrayNewItem))
+      setRefresh(!refresh)
     } else {
       const newItem: CartItens = {
         id: i.id,
@@ -56,6 +71,7 @@ const Home = () => {
       }
       ArrayNewItem.push(newItem)
       dispatch(addCartItem(ArrayNewItem))
+      setRefresh(!refresh)
     }
   }
   return(
@@ -77,6 +93,7 @@ const Home = () => {
           ))
         }
       </Cards>
+      <Toaster/>
     </>
   )
 }
