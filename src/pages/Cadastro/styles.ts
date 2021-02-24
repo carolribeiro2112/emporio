@@ -11,12 +11,14 @@ export const Title = styled.h1`
 
 export const Login = styled.div`
   text-align: center;
-  margin-top: 36px;
+  margin: 36px auto;
 `;
 export const Input = styled.input`
   display: block;
   width: 200px;
   margin: 0 auto;
+
+  font-weight: bold;
   
   border-radius: 4px;
   border: none;
@@ -52,4 +54,15 @@ export const Background = styled.div`
   flex: 1;
   background: url(${signInBackgroundImg}) no-repeat center;
   background-size: cover;
+`;
+
+export const Logo = styled.div`
+  
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    margin-top:30px;
+    height: 80px;
+  }
 `;

@@ -53,3 +53,26 @@ export const Categories = styled.div`
   }
 `;
 
+export const Search = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40px;
+  
+  input{
+    height: 40px;
+    width: 400px;
+    border-radius:  5px 0 0 5px;
+    background-color: #f0f0f0;
+    border: none;
+  }
+  
+  button{
+    height: 40px;
+    width: 40px;
+    border: none;
+
+    background-color: #ffa935;
+    border-radius: 0 5px 5px 0 ;
+  }
+`;

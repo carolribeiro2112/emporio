@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header';
-import { addCartItem } from '../../store/ducks/cart/actions';
+import { addCartItem, deleteCartItem } from '../../store/ducks/cart/actions';
 import { CartItemState, CartItens } from '../../store/ducks/cart/types';
-import {Table,Thead, Card, TD, H1, H3, Button} from './styles';
-import {FiTrash2} from 'react-icons/fi'
+import {Table,Thead, Card, TD, H1, H3, Button, Final, Finished} from './styles';
+import {FiTrash2} from 'react-icons/fi';
+import toast,{ Toaster } from 'react-hot-toast';
 
 const Carrinho = () => {
   const [refresh,setRefresh] = useState<Boolean>(true)
 
   const cartItens = useSelector((state:CartItemState)=>state.cart.cartItens)
   const ArraynewItem = cartItens
+
+  const total: number[] = []
+  let result: number = 0
 
   const dispatch = useDispatch()
 
@@ -42,13 +46,27 @@ const Carrinho = () => {
     setRefresh(!refresh)
   }
 
-  const calc = (item: CartItens) => {
-    const price = (Number(item.price));
+  const calc = (item:CartItens) => {
+    const price = (Number(item.price.substring(3).replace(',','.')));
     const quantity = (item.quantity);
-    const subTotal = price*quantity;
-    return subTotal;
+    const totalItemPrice = price*quantity
+    controleTotal(item)
+    return totalItemPrice
   }
-  console.log(calc)
+
+  const controleTotal = (item: CartItens) => {
+    const totalPrice = (Number(item.price.substring(3).replace(',','.')));
+    const quantity = (item.quantity);
+    const subTotal = totalPrice*quantity;
+    total.push(subTotal)
+    const arrayReducer = (accumulator: number, currentValue: number) => accumulator+currentValue
+    result = total.reduce(arrayReducer)
+  }
+  
+  const finishOrder = () => {
+    toast.success('Seu pedido foi realizado com sucesso')
+    dispatch(deleteCartItem())
+  }
 
 
   return(
@@ -69,14 +87,13 @@ const Carrinho = () => {
             </Button>
         }
       
-     
-      
       <Table>        
           <Thead>
             <p>Produto</p>
             <p>Preço</p>
             <p>Quantidade</p>
-            
+            <p>Subtotal</p>
+            <p></p>
           </Thead>
       
         <div>
@@ -86,12 +103,22 @@ const Carrinho = () => {
                <TD><img src={item.image} alt={item.title}/><p>{item.title}</p></TD>
                <TD>{item.price}</TD>
                <TD><button onClick={()=>decreaseQuantity(item)}>-</button>{item.quantity}<button onClick={()=>addQuantity(item)}>+</button></TD>
-               <TD><FiTrash2 onClick={()=>deleteItem(item)}/></TD>
+               <TD>{calc(item).toFixed(2)}</TD>
+               <TD><FiTrash2 size={24} onClick={()=>deleteItem(item)}/></TD>
              </Card>
            ))
          }
         </div>
       </Table>
+
+      <Final>
+        <h2>Total:</h2>
+        <p>R${result.toFixed(2)}</p>
+      </Final>
+
+      <Finished onClick={finishOrder}>Finalizar Compra</Finished>
+
+      <Toaster/>
     </>
   )
 }

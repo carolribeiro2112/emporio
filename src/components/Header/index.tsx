@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import LogoImg from '../../assets/logo.svg';
 import LogoImg2 from '../../assets/logo2.svg';
-import {H3, Head, Categories, Logo} from './styles';
+import {H3, Head, Categories, Logo, Search} from './styles';
 import Notification from '../Notification';
+import {FiSearch} from 'react-icons/fi';
 // import { CartItemState, CartItens } from '../../store/ducks/cart/types';
 
 
@@ -32,6 +33,12 @@ const Header = () => {
           <img src={LogoImg2} alt=""/>
           <img src={LogoImg} alt=""/>
         </Logo>
+
+        <Search>
+          <input type="text" placeholder="Buscar"/>
+          <button><FiSearch size={20}/></button>
+        </Search>
+        
         
         <Link to='/carrinho'> 
           <Notification/>

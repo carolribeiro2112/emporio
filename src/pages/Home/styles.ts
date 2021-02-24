@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {shade} from 'polished';
 
 export const Cards = styled.div`
   margin: 50px auto;
@@ -37,6 +38,10 @@ export const Card = styled.div`
     background-color: #fc591f;
     border-radius: 8px;
     border: none;
+
+    &:hover{
+      background-color: ${shade(0.2,'#fc591f')}
+    }
   }
 
 `;

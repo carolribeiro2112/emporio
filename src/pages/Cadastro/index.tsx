@@ -1,16 +1,12 @@
 import axios from 'axios';
 import React, { useState, useRef} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
-// import {IconBaseProps} from 'react-icons';
+import LogoImg from '../../assets/logo.svg';
+import LogoImg2 from '../../assets/logo2.svg';
 import { Redirect } from 'react-router-dom';
-// import {FaBirthdayCake} from 'react-icons/fa'
 
-import {Login, Title, Input, Button, Background } from './styles';
-// import { FiUser } from 'react-icons/fi';
 
-// interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-//   icon: React.ComponentType<IconBaseProps>;
-// }
+import {Login, Input, Button, Background, Logo} from './styles';
 
 const Cadastro = () => {
 
@@ -53,7 +49,11 @@ const Cadastro = () => {
       <Toaster/>
     
       <Background> 
-        <Title>Cadastro</Title>
+        <Logo>
+          <img src={LogoImg2} alt=""/>
+          <img src={LogoImg} alt=""/>
+        </Logo>
+        {/* <Title>Cadastro</Title> */}
 
         <Login>
           <Input type="text" ref={inputNome} placeholder="Digite o seu nome"/>
